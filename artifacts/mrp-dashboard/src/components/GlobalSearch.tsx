@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Search, FileText, Package, AlertCircle, X, Box } from 'lucide-react';
 import { Input } from './ui/input';
 import { Dialog, DialogContent } from './ui/dialog';
@@ -91,7 +91,7 @@ export function GlobalSearch() {
   };
 
   // Keyboard shortcut to open search
-  useState(() => {
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
@@ -100,7 +100,7 @@ export function GlobalSearch() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  });
+  }, []);
 
   return (
     <>

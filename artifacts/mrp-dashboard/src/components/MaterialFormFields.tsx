@@ -7,14 +7,16 @@ import { Textarea } from './ui/textarea';
 import { Plus, Trash2 } from 'lucide-react';
 import { MaterialCategory, InventoryItem, FabricSpecification, FoamSpecification, FastenerSpecification, ThreadSpecification, PackagingSpecification, FabricType, FiberType, FinishType, FoamType, FastenerType } from '../data/mockData';
 
+type UpdateSpecFn<T> = (field: keyof T, value: T[keyof T]) => void;
+
 interface MaterialFormFieldsProps {
   formData: Partial<InventoryItem>;
-  updateFormField: (field: keyof InventoryItem, value: any) => void;
-  updateFabricSpec: (field: keyof FabricSpecification, value: any) => void;
-  updateFoamSpec: (field: keyof FoamSpecification, value: any) => void;
-  updateFastenerSpec: (field: keyof FastenerSpecification, value: any) => void;
-  updateThreadSpec: (field: keyof ThreadSpecification, value: any) => void;
-  updatePackagingSpec: (field: keyof PackagingSpecification, value: any) => void;
+  updateFormField: UpdateSpecFn<InventoryItem>;
+  updateFabricSpec: UpdateSpecFn<FabricSpecification>;
+  updateFoamSpec: UpdateSpecFn<FoamSpecification>;
+  updateFastenerSpec: UpdateSpecFn<FastenerSpecification>;
+  updateThreadSpec: UpdateSpecFn<ThreadSpecification>;
+  updatePackagingSpec: UpdateSpecFn<PackagingSpecification>;
 }
 
 export function MaterialFormFields({
@@ -33,7 +35,7 @@ export function MaterialFormFields({
     updateFabricSpec('fiberComposition', [...currentComposition, { fiber: 'polyester' as FiberType, percentage: 0 }]);
   };
 
-  const updateFiber = (index: number, field: 'fiber' | 'percentage', value: any) => {
+  const updateFiber = (index: number, field: 'fiber' | 'percentage', value: FiberType | number) => {
     const currentComposition = [...(formData.fabricSpec?.fiberComposition || [])];
     currentComposition[index] = { ...currentComposition[index], [field]: value };
     updateFabricSpec('fiberComposition', currentComposition);
@@ -392,7 +394,7 @@ export function MaterialFormFields({
               <Checkbox
                 id="stretch"
                 checked={formData.fabricSpec?.stretch || false}
-                onCheckedChange={(checked) => updateFabricSpec('stretch', checked)}
+                onCheckedChange={(checked) => updateFabricSpec('stretch', checked === true)}
               />
               <label htmlFor="stretch" className="text-sm">Stretch Fabric</label>
             </div>
@@ -415,7 +417,7 @@ export function MaterialFormFields({
               <Checkbox
                 id="isLaminated"
                 checked={formData.fabricSpec?.isLaminated || false}
-                onCheckedChange={(checked) => updateFabricSpec('isLaminated', checked)}
+                onCheckedChange={(checked) => updateFabricSpec('isLaminated', checked === true)}
               />
               <label htmlFor="isLaminated" className="text-sm font-medium">Laminated Fabric</label>
             </div>
@@ -431,8 +433,8 @@ export function MaterialFormFields({
                       value={formData.fabricSpec?.laminationDetails?.laminateType} 
                       onValueChange={(value) => updateFabricSpec('laminationDetails', {
                         ...formData.fabricSpec?.laminationDetails,
-                        laminateType: value
-                      })}
+                        laminateType: value as 'PU-foam' | 'open-cell-foam' | 'closed-cell-foam' | 'TPU' | 'other',
+                      } as FabricSpecification['laminationDetails'])}
                     >
                       <SelectTrigger id="laminateType">
                         <SelectValue placeholder="Select type" />
@@ -456,8 +458,8 @@ export function MaterialFormFields({
                       value={formData.fabricSpec?.laminationDetails?.thickness || 0}
                       onChange={(e) => updateFabricSpec('laminationDetails', {
                         ...formData.fabricSpec?.laminationDetails,
-                        thickness: parseFloat(e.target.value)
-                      })}
+                        thickness: parseFloat(e.target.value),
+                      } as FabricSpecification['laminationDetails'])}
                     />
                   </div>
 
@@ -469,8 +471,8 @@ export function MaterialFormFields({
                       value={formData.fabricSpec?.laminationDetails?.density || 0}
                       onChange={(e) => updateFabricSpec('laminationDetails', {
                         ...formData.fabricSpec?.laminationDetails,
-                        density: parseInt(e.target.value)
-                      })}
+                        density: parseInt(e.target.value),
+                      } as FabricSpecification['laminationDetails'])}
                     />
                   </div>
                 </div>
@@ -481,8 +483,8 @@ export function MaterialFormFields({
                     value={formData.fabricSpec?.laminationDetails?.bondingMethod} 
                     onValueChange={(value) => updateFabricSpec('laminationDetails', {
                       ...formData.fabricSpec?.laminationDetails,
-                      bondingMethod: value as 'adhesive' | 'heat-bond' | 'flame-lamination'
-                    })}
+                      bondingMethod: value as 'adhesive' | 'heat-bond' | 'flame-lamination',
+                    } as FabricSpecification['laminationDetails'])}
                   >
                     <SelectTrigger id="bondingMethod">
                       <SelectValue placeholder="Select method" />
@@ -786,8 +788,8 @@ export function MaterialFormFields({
                 value={formData.packagingSpec?.dimensions?.length || 0}
                 onChange={(e) => updatePackagingSpec('dimensions', {
                   ...formData.packagingSpec?.dimensions,
-                  length: parseFloat(e.target.value)
-                })}
+                  length: parseFloat(e.target.value),
+                } as PackagingSpecification['dimensions'])}
                 placeholder="Length"
               />
               <Input
@@ -795,8 +797,8 @@ export function MaterialFormFields({
                 value={formData.packagingSpec?.dimensions?.width || 0}
                 onChange={(e) => updatePackagingSpec('dimensions', {
                   ...formData.packagingSpec?.dimensions,
-                  width: parseFloat(e.target.value)
-                })}
+                  width: parseFloat(e.target.value),
+                } as PackagingSpecification['dimensions'])}
                 placeholder="Width"
               />
               <Input
@@ -804,16 +806,16 @@ export function MaterialFormFields({
                 value={formData.packagingSpec?.dimensions?.height || 0}
                 onChange={(e) => updatePackagingSpec('dimensions', {
                   ...formData.packagingSpec?.dimensions,
-                  height: parseFloat(e.target.value)
-                })}
+                  height: parseFloat(e.target.value),
+                } as PackagingSpecification['dimensions'])}
                 placeholder="Height"
               />
               <Select 
                 value={formData.packagingSpec?.dimensions?.unit || 'cm'} 
                 onValueChange={(value) => updatePackagingSpec('dimensions', {
                   ...formData.packagingSpec?.dimensions,
-                  unit: value as 'cm' | 'inch'
-                })}
+                  unit: value as 'cm' | 'inch',
+                } as PackagingSpecification['dimensions'])}
               >
                 <SelectTrigger>
                   <SelectValue />
@@ -841,7 +843,7 @@ export function MaterialFormFields({
               <Checkbox
                 id="recyclable"
                 checked={formData.packagingSpec?.recyclable || false}
-                onCheckedChange={(checked) => updatePackagingSpec('recyclable', checked)}
+                onCheckedChange={(checked) => updatePackagingSpec('recyclable', checked === true)}
               />
               <label htmlFor="recyclable" className="text-sm">Recyclable</label>
             </div>

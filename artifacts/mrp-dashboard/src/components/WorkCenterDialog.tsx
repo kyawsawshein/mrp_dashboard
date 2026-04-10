@@ -97,7 +97,7 @@ export function WorkCenterDialog({
     onOpenChange(false);
   };
 
-  const updateField = (field: keyof WorkCenter, value: any) => {
+  const updateField = <K extends keyof WorkCenter>(field: K, value: WorkCenter[K]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -149,7 +149,7 @@ export function WorkCenterDialog({
                   <Label htmlFor="type">Type *</Label>
                   <Select
                     value={formData.type}
-                    onValueChange={(value: any) => updateField('type', value)}
+                    onValueChange={(value) => updateField('type', value as WorkCenter['type'])}
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -187,7 +187,7 @@ export function WorkCenterDialog({
                   <Label htmlFor="status">Status</Label>
                   <Select
                     value={formData.status}
-                    onValueChange={(value: any) => updateField('status', value)}
+                    onValueChange={(value) => updateField('status', value as WorkCenter['status'])}
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -309,7 +309,7 @@ export function WorkCenterDialog({
                   <Label htmlFor="skillLevel">Skill Level *</Label>
                   <Select
                     value={formData.skillLevel}
-                    onValueChange={(value: any) => updateField('skillLevel', value)}
+                    onValueChange={(value) => updateField('skillLevel', value as WorkCenter['skillLevel'])}
                   >
                     <SelectTrigger>
                       <SelectValue />
