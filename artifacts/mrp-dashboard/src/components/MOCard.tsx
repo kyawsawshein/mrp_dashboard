@@ -9,11 +9,14 @@ interface MOCardProps {
 }
 
 export function MOCard({ order }: MOCardProps) {
-  const statusConfig = {
+  const statusConfig: Record<string, { color: string; label: string; icon: typeof Clock }> = {
     planned: { color: 'bg-blue-500', label: 'Planned', icon: Clock },
     'in-progress': { color: 'bg-yellow-500', label: 'In Progress', icon: Package },
     completed: { color: 'bg-green-500', label: 'Completed', icon: CheckCircle2 },
     delayed: { color: 'bg-red-500', label: 'Delayed', icon: AlertCircle },
+    'on-hold': { color: 'bg-gray-500', label: 'On Hold', icon: Clock },
+    cancelled: { color: 'bg-gray-400', label: 'Cancelled', icon: AlertCircle },
+    rework: { color: 'bg-orange-500', label: 'Rework', icon: AlertCircle },
   };
 
   const priorityConfig = {
@@ -22,7 +25,7 @@ export function MOCard({ order }: MOCardProps) {
     low: 'bg-gray-100 text-gray-700 border-gray-200',
   };
 
-  const config = statusConfig[order.status];
+  const config = statusConfig[order.status] || statusConfig.planned;
   const StatusIcon = config.icon;
 
   const hasMaterialShortage = order.materials.some(m => m.status === 'shortage');

@@ -396,39 +396,39 @@ export default function ProductsPage() {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="category">Category</Label>
-              <Select
-                id="category"
-                value={formData.category || ''}
-                onValueChange={(value) => updateFormField('category', value)}
-                className="col-span-3"
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(cat => (
-                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="col-span-3">
+                <Select
+                                  value={formData.category || ''}
+                  onValueChange={(value) => updateFormField('category', value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map(cat => (
+                      <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="vehicleType">Vehicle Type</Label>
-              <Select
-                id="vehicleType"
-                value={formData.vehicleType || ''}
-                onValueChange={(value) => updateFormField('vehicleType', value)}
-                className="col-span-3"
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select vehicle type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {vehicleTypes.map(vt => (
-                    <SelectItem key={vt} value={vt}>{vt}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="col-span-3">
+                <Select
+                                  value={formData.vehicleType || ''}
+                  onValueChange={(value) => updateFormField('vehicleType', value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select vehicle type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {vehicleTypes.map(vt => (
+                      <SelectItem key={vt} value={vt}>{vt}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="currentStock">Current Stock</Label>
@@ -521,22 +521,22 @@ export default function ProductsPage() {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="status">Status</Label>
-              <Select
-                id="status"
-                value={formData.status || ''}
-                onValueChange={(value) => updateFormField('status', value)}
-                className="col-span-3"
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="in-stock">In Stock</SelectItem>
-                  <SelectItem value="low-stock">Low Stock</SelectItem>
-                  <SelectItem value="out-of-stock">Out of Stock</SelectItem>
-                  <SelectItem value="discontinued">Discontinued</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="col-span-3">
+                <Select
+                                  value={formData.status || ''}
+                  onValueChange={(value) => updateFormField('status', value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="in-stock">In Stock</SelectItem>
+                    <SelectItem value="low-stock">Low Stock</SelectItem>
+                    <SelectItem value="out-of-stock">Out of Stock</SelectItem>
+                    <SelectItem value="discontinued">Discontinued</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
           <DialogFooter>
@@ -580,39 +580,39 @@ export default function ProductsPage() {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="category">Category</Label>
-              <Select
-                id="category"
-                value={formData.category || ''}
-                onValueChange={(value) => updateFormField('category', value)}
-                className="col-span-3"
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(cat => (
-                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="col-span-3">
+                <Select
+                                  value={formData.category || ''}
+                  onValueChange={(value) => updateFormField('category', value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map(cat => (
+                      <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="vehicleType">Vehicle Type</Label>
-              <Select
-                id="vehicleType"
-                value={formData.vehicleType || ''}
-                onValueChange={(value) => updateFormField('vehicleType', value)}
-                className="col-span-3"
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select vehicle type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {vehicleTypes.map(vt => (
-                    <SelectItem key={vt} value={vt}>{vt}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="col-span-3">
+                <Select
+                                  value={formData.vehicleType || ''}
+                  onValueChange={(value) => updateFormField('vehicleType', value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select vehicle type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {vehicleTypes.map(vt => (
+                      <SelectItem key={vt} value={vt}>{vt}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="currentStock">Current Stock</Label>
@@ -705,22 +705,22 @@ export default function ProductsPage() {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="status">Status</Label>
-              <Select
-                id="status"
-                value={formData.status || ''}
-                onValueChange={(value) => updateFormField('status', value)}
-                className="col-span-3"
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="in-stock">In Stock</SelectItem>
-                  <SelectItem value="low-stock">Low Stock</SelectItem>
-                  <SelectItem value="out-of-stock">Out of Stock</SelectItem>
-                  <SelectItem value="discontinued">Discontinued</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="col-span-3">
+                <Select
+                                  value={formData.status || ''}
+                  onValueChange={(value) => updateFormField('status', value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="in-stock">In Stock</SelectItem>
+                    <SelectItem value="low-stock">Low Stock</SelectItem>
+                    <SelectItem value="out-of-stock">Out of Stock</SelectItem>
+                    <SelectItem value="discontinued">Discontinued</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
           <DialogFooter>

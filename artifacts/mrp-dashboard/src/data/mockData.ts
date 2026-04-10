@@ -560,12 +560,24 @@ export const departments = [
 ];
 
 // Manufacturing Orders
+export interface OrderModification {
+  id: string;
+  timestamp: string;
+  type: 'status-change' | 'quantity-change' | 'scrap' | 'rework' | 'note' | 'schedule-change' | 'scrap-reported' | 'rework-initiated' | 'cancelled';
+  description: string;
+  changedBy: string;
+  user?: string;
+  notes?: string;
+  previousValue?: string;
+  newValue?: string;
+}
+
 export interface ManufacturingOrder {
   id: string;
   product: string;
   quantity: number;
   department: string;
-  status: 'planned' | 'in-progress' | 'completed' | 'delayed' | 'on-hold';
+  status: 'planned' | 'in-progress' | 'completed' | 'delayed' | 'on-hold' | 'cancelled' | 'rework';
   priority: 'low' | 'medium' | 'high';
   startDate: string;
   endDate: string;
@@ -578,6 +590,21 @@ export interface ManufacturingOrder {
     unit: string;
     status: 'sufficient' | 'shortage' | 'ordered';
   }[];
+  scrapQuantity?: number;
+  reworkQuantity?: number;
+  actualQuantityProduced?: number;
+  defectNotes?: string;
+  cancellationReason?: string;
+  modificationHistory?: OrderModification[];
+}
+
+export interface Material {
+  id: string;
+  name: string;
+  required: number;
+  available: number;
+  unit: string;
+  status: 'sufficient' | 'shortage' | 'ordered' | 'critical';
 }
 
 export const manufacturingOrders: ManufacturingOrder[] = [

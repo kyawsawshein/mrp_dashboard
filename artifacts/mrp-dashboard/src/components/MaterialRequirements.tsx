@@ -35,6 +35,18 @@ export function MaterialRequirements({ materials }: MaterialRequirementsProps) {
           color: 'bg-blue-100 text-blue-700 border-blue-200',
           icon: Package,
         };
+      case 'critical':
+        return {
+          label: 'Critical',
+          color: 'bg-red-100 text-red-700 border-red-200',
+          icon: AlertCircle,
+        };
+      default:
+        return {
+          label: 'Unknown',
+          color: 'bg-gray-100 text-gray-700 border-gray-200',
+          icon: Package,
+        };
     }
   };
 

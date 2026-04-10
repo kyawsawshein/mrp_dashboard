@@ -34,14 +34,16 @@ export function ScrapReworkDialog({ isOpen, onClose, order, onSave, type }: Scra
     }
 
     // Create modification record
+    const prevVal = (type === 'scrap' ? order.scrapQuantity || 0 : order.reworkQuantity || 0);
+    const newVal = prevVal + quantity;
     const modification: OrderModification = {
       id: `MOD-${Date.now()}`,
       timestamp: new Date().toISOString(),
-      type: type === 'scrap' ? 'scrap-reported' : 'rework-initiated',
-      user: 'Current User', // In real app, this would be the logged-in user
-      previousValue: type === 'scrap' ? order.scrapQuantity || 0 : order.reworkQuantity || 0,
-      newValue: (type === 'scrap' ? order.scrapQuantity || 0 : order.reworkQuantity || 0) + quantity,
-      notes: `${reason}${notes ? ': ' + notes : ''}`,
+      type: type === 'scrap' ? 'scrap' : 'rework',
+      description: `${reason}${notes ? ': ' + notes : ''}`,
+      changedBy: 'Current User',
+      previousValue: String(prevVal),
+      newValue: String(newVal),
     };
 
     // Update order

@@ -61,7 +61,7 @@ export default function MRPPlanningPage() {
   const criticalCount = mrpResults.filter(m => m.status === 'critical').length;
   const shortageCount = mrpResults.filter(m => m.status === 'shortage').length;
   const lowCount = mrpResults.filter(m => m.status === 'low').length;
-  const totalPurchaseValue = plannedOrders.reduce((sum, po) => sum + po.totalCost, 0);
+  const totalPurchaseValue = plannedOrders.reduce((sum, po) => sum + (po.totalCost ?? 0), 0);
   const urgentPurchases = plannedOrders.filter(po => po.notes?.includes('URGENT')).length;
 
   const handleRefresh = () => {
@@ -339,7 +339,7 @@ export default function MRPPlanningPage() {
                   <div className="flex items-center gap-6 text-sm text-gray-600">
                     <span>Supplier: <span className="font-medium">{po.supplier}</span></span>
                     <span>Qty: <span className="font-medium">{po.quantity} {po.unit}</span></span>
-                    <span>Cost: <span className="font-medium">${po.totalCost.toFixed(2)}</span></span>
+                    <span>Cost: <span className="font-medium">${(po.totalCost ?? 0).toFixed(2)}</span></span>
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
                       Order by: <span className="font-medium">{po.orderDate}</span>

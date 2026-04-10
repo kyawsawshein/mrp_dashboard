@@ -514,7 +514,7 @@ export function generateMRPExceptions(mrpResults: MRPResult[]): MRPException[] {
     }
     
     // Regular shortage
-    if (mrp.status === 'shortage' && mrp.status !== 'critical') {
+    if (mrp.status === 'shortage') {
       exceptions.push({
         type: 'shortage',
         severity: 'warning',

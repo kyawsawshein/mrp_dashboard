@@ -20,6 +20,15 @@ interface GanttOrder {
   endDate: string;
   completion: number;
   quantity: number;
+  materials: {
+    id: string;
+    name: string;
+    required: number;
+    available: number;
+    unit: string;
+    status: 'sufficient' | 'shortage' | 'ordered';
+  }[];
+  [key: string]: unknown;
 }
 
 const ItemTypes = {
@@ -82,7 +91,7 @@ function DraggableGanttRow({
 
   return (
     <div
-      ref={(node) => drag(drop(node))}
+      ref={(node) => { drag(drop(node)); }}
       className={`flex border-b border-gray-200 transition-all ${
         isDragging ? 'opacity-50' : ''
       } ${isOver ? 'bg-blue-50' : index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} hover:bg-gray-50 cursor-move`}
@@ -153,7 +162,7 @@ function DraggableGanttRow({
 function GanttViewContent() {
   const [selectedDepartment, setSelectedDepartment] = useState<string>('all');
   const [viewDate, setViewDate] = useState(new Date(2026, 3, 1));
-  const [orders, setOrders] = useState(manufacturingOrders);
+  const [orders, setOrders] = useState<GanttOrder[]>(manufacturingOrders as GanttOrder[]);
 
   const monthStart = startOfMonth(viewDate);
   const monthEnd = endOfMonth(viewDate);
