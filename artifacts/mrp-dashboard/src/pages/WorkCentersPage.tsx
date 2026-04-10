@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
@@ -348,9 +348,7 @@ export default function WorkCentersPage() {
                     <Progress 
                       value={wc.currentLoad} 
                       className="h-2"
-                      style={{
-                        '--progress-background': getLoadColor(wc.currentLoad, wc.capacity.utilizationTarget)
-                      } as any}
+                      style={{ '--progress-background': getLoadColor(wc.currentLoad, wc.capacity.utilizationTarget) } as React.CSSProperties}
                     />
                   </div>
 

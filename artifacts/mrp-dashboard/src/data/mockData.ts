@@ -103,6 +103,8 @@ export interface InventoryItem {
   notes?: string;
   imageUrl?: string;
   status: 'in-stock' | 'low-stock' | 'out-of-stock' | 'discontinued';
+  allocatedStock?: number;
+  safetyStock?: number;
 }
 
 export const inventoryItems: InventoryItem[] = [
