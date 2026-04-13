@@ -142,7 +142,7 @@ export default function WorkCentersPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Work Centers & Routing</h1>
+        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Work Centers & Routing</h1>
         <p className="text-gray-600 mt-2">Manage manufacturing resources, capacity, and operations routing</p>
       </div>
 
@@ -153,7 +153,7 @@ export default function WorkCentersPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Utilization</p>
-                <p className="text-3xl font-bold text-blue-600 mt-1">{avgUtilization.toFixed(1)}%</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-blue-600 mt-1">{avgUtilization.toFixed(1)}%</p>
               </div>
               <Activity className="w-8 h-8 text-blue-600" />
             </div>
@@ -165,7 +165,7 @@ export default function WorkCentersPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg OEE Score</p>
-                <p className="text-3xl font-bold text-green-600 mt-1">{avgOEE.toFixed(1)}%</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-green-600 mt-1">{avgOEE.toFixed(1)}%</p>
                 <p className="text-xs text-gray-500 mt-1">Equipment Effectiveness</p>
               </div>
               <Zap className="w-8 h-8 text-green-600" />
@@ -178,7 +178,7 @@ export default function WorkCentersPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Downtime</p>
-                <p className="text-3xl font-bold text-orange-600 mt-1">{totalDowntime}h</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-orange-600 mt-1">{totalDowntime}h</p>
                 <p className="text-xs text-gray-500 mt-1">This Period</p>
               </div>
               <Clock className="w-8 h-8 text-orange-600" />
@@ -191,7 +191,7 @@ export default function WorkCentersPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Available / Total</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900 mt-1">
                   {availableWorkCenters}/{workCenters.length}
                 </p>
               </div>

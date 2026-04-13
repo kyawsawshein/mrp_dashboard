@@ -22,7 +22,7 @@ export default function Overview() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
+        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Dashboard Overview</h1>
         <p className="text-gray-600 mt-2">Manufacturing resource planning for car seat cover production</p>
       </div>
 
@@ -35,7 +35,7 @@ export default function Overview() {
           <CardContent>
             <div className="flex items-center gap-2">
               <Package className="w-5 h-5 text-gray-500" />
-              <span className="text-2xl font-bold">{totalOrders}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{totalOrders}</span>
             </div>
           </CardContent>
         </Card>
@@ -47,7 +47,7 @@ export default function Overview() {
           <CardContent>
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-yellow-500" />
-              <span className="text-2xl font-bold text-yellow-600">{inProgressOrders}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-yellow-600">{inProgressOrders}</span>
             </div>
           </CardContent>
         </Card>
@@ -59,7 +59,7 @@ export default function Overview() {
           <CardContent>
             <div className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-blue-500" />
-              <span className="text-2xl font-bold text-blue-600">{plannedOrders}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">{plannedOrders}</span>
             </div>
           </CardContent>
         </Card>
@@ -71,7 +71,7 @@ export default function Overview() {
           <CardContent>
             <div className="flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-red-500" />
-              <span className="text-2xl font-bold text-red-600">{delayedOrders}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-red-600">{delayedOrders}</span>
             </div>
           </CardContent>
         </Card>
@@ -83,7 +83,7 @@ export default function Overview() {
           <CardContent>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-500" />
-              <span className="text-2xl font-bold text-green-600">{completedOrders}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-green-600">{completedOrders}</span>
             </div>
           </CardContent>
         </Card>
@@ -119,7 +119,7 @@ export default function Overview() {
             <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
               <div>
                 <p className="text-sm text-gray-600">Material Shortages</p>
-                <p className="text-2xl font-bold text-red-600">{materialShortages}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-red-600">{materialShortages}</p>
               </div>
               <AlertCircle className="w-8 h-8 text-red-500" />
             </div>
@@ -127,7 +127,7 @@ export default function Overview() {
             <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
               <div>
                 <p className="text-sm text-gray-600">High Priority</p>
-                <p className="text-2xl font-bold text-orange-600">{highPriorityOrders.length}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-orange-600">{highPriorityOrders.length}</p>
               </div>
               <TrendingUp className="w-8 h-8 text-orange-500" />
             </div>
@@ -135,7 +135,7 @@ export default function Overview() {
             <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <div>
                 <p className="text-sm text-gray-600">Active Departments</p>
-                <p className="text-2xl font-bold text-blue-600">9</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">9</p>
               </div>
               <Package className="w-8 h-8 text-blue-500" />
             </div>

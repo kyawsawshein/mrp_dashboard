@@ -74,7 +74,7 @@ export default function ProductionSchedulingPage() {
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Production Scheduling & Capacity Planning</h1>
+            <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Production Scheduling & Capacity Planning</h1>
             <p className="text-gray-600 mt-2">Optimize workload, detect conflicts, and balance department capacity</p>
           </div>
           <div className="flex gap-2">
@@ -97,7 +97,7 @@ export default function ProductionSchedulingPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Utilization</p>
-                <p className="text-3xl font-bold text-blue-600 mt-1">{scheduleOverview.avgUtilization}%</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-blue-600 mt-1">{scheduleOverview.avgUtilization}%</p>
               </div>
               <TrendingUp className="w-8 h-8 text-blue-600" />
             </div>
@@ -109,7 +109,7 @@ export default function ProductionSchedulingPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active Orders</p>
-                <p className="text-3xl font-bold text-green-600 mt-1">{scheduleOverview.scheduledOrders}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-green-600 mt-1">{scheduleOverview.scheduledOrders}</p>
                 <p className="text-xs text-gray-500 mt-1">of {scheduleOverview.totalOrders} total</p>
               </div>
               <Users className="w-8 h-8 text-green-600" />
@@ -122,7 +122,7 @@ export default function ProductionSchedulingPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Conflicts</p>
-                <p className="text-3xl font-bold text-red-600 mt-1">{conflicts.conflicts.length}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-red-600 mt-1">{conflicts.conflicts.length}</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-red-600" />
             </div>
@@ -148,7 +148,7 @@ export default function ProductionSchedulingPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Suggestions</p>
-                <p className="text-3xl font-bold text-purple-600 mt-1">{loadBalancing.suggestions.length}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-purple-600 mt-1">{loadBalancing.suggestions.length}</p>
               </div>
               <Lightbulb className="w-8 h-8 text-purple-600" />
             </div>
@@ -274,7 +274,7 @@ export default function ProductionSchedulingPage() {
                     </Badge>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold">{dept.utilizationPercent}%</p>
+                    <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{dept.utilizationPercent}%</p>
                     <p className="text-xs text-gray-500">{dept.plannedLoad}h / {dept.capacity}h capacity</p>
                   </div>
                 </div>

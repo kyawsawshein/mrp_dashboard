@@ -156,7 +156,7 @@ export default function ShopFloorTerminal() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Shop Floor Terminal</h1>
+        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Shop Floor Terminal</h1>
         <p className="text-gray-600 mt-2">Real-time production tracking and material consumption</p>
       </div>
 

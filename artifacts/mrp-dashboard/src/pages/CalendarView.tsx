@@ -72,7 +72,7 @@ export default function CalendarView() {
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Calendar View</h1>
+            <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Calendar View</h1>
             <p className="text-gray-600 mt-2">Manufacturing orders timeline</p>
           </div>
           <div className="flex items-center gap-4">

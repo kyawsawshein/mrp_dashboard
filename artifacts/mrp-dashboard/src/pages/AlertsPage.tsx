@@ -140,7 +140,7 @@ export default function AlertsPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Alerts & Notifications</h1>
+        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Alerts & Notifications</h1>
         <p className="text-gray-600 mt-2">Real-time system alerts and manufacturing notifications</p>
       </div>
 
@@ -153,7 +153,7 @@ export default function AlertsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <AlertCircle className="w-8 h-8 text-red-500" />
-              <span className="text-3xl font-bold text-red-600">{criticalAlerts.length}</span>
+              <span className="text-2xl sm:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-red-600">{criticalAlerts.length}</span>
             </div>
           </CardContent>
         </Card>
@@ -165,7 +165,7 @@ export default function AlertsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-8 h-8 text-yellow-500" />
-              <span className="text-3xl font-bold text-yellow-600">{warningAlerts.length}</span>
+              <span className="text-2xl sm:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-yellow-600">{warningAlerts.length}</span>
             </div>
           </CardContent>
         </Card>
@@ -177,7 +177,7 @@ export default function AlertsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <Info className="w-8 h-8 text-blue-500" />
-              <span className="text-3xl font-bold text-blue-600">{infoAlerts.length}</span>
+              <span className="text-2xl sm:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-blue-600">{infoAlerts.length}</span>
             </div>
           </CardContent>
         </Card>

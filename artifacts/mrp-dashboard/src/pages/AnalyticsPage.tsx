@@ -15,7 +15,7 @@ export default function AnalyticsPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Analytics & KPIs</h1>
+        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Analytics & KPIs</h1>
         <p className="text-gray-600 mt-2">Production efficiency, OEE tracking, and performance metrics</p>
       </div>
 
@@ -31,7 +31,7 @@ export default function AnalyticsPage() {
           <CardContent>
             <div className="flex items-end justify-between">
               <div>
-                <div className="text-3xl font-bold">{currentMonthEfficiency}%</div>
+                <div className="text-2xl sm:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold">{currentMonthEfficiency}%</div>
                 <div className={`text-xs flex items-center gap-1 mt-1 ${
                   efficiencyTrend >= 0 ? 'text-green-600' : 'text-red-600'
                 }`}>
@@ -51,7 +51,7 @@ export default function AnalyticsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{avgOEE}%</div>
+            <div className="text-2xl sm:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold">{avgOEE}%</div>
             <div className="text-xs text-gray-500 mt-1">Across all departments</div>
           </CardContent>
         </Card>
@@ -64,7 +64,7 @@ export default function AnalyticsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-green-600">{avgYield}%</div>
+            <div className="text-2xl sm:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-green-600">{avgYield}%</div>
             <div className="text-xs text-gray-500 mt-1">Quality rate</div>
           </CardContent>
         </Card>
@@ -77,7 +77,7 @@ export default function AnalyticsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-red-600">{totalDefects}</div>
+            <div className="text-2xl sm:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-red-600">{totalDefects}</div>
             <div className="text-xs text-gray-500 mt-1">This month</div>
           </CardContent>
         </Card>

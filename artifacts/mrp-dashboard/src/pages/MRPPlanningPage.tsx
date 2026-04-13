@@ -91,7 +91,7 @@ export default function MRPPlanningPage() {
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">MRP Planning Dashboard</h1>
+            <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">MRP Planning Dashboard</h1>
             <p className="text-gray-600 mt-2">Material Requirements Planning & Purchase Recommendations</p>
           </div>
           <div className="flex gap-2">
@@ -117,7 +117,7 @@ export default function MRPPlanningPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Critical Shortages</p>
-                <p className="text-3xl font-bold text-red-600 mt-1">{criticalCount}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-red-600 mt-1">{criticalCount}</p>
               </div>
               <AlertTriangle className="w-8 h-8 text-red-600" />
             </div>
@@ -129,7 +129,7 @@ export default function MRPPlanningPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Material Shortages</p>
-                <p className="text-3xl font-bold text-orange-600 mt-1">{shortageCount}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-orange-600 mt-1">{shortageCount}</p>
               </div>
               <TrendingDown className="w-8 h-8 text-orange-600" />
             </div>
@@ -141,7 +141,7 @@ export default function MRPPlanningPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Low Stock Items</p>
-                <p className="text-3xl font-bold text-yellow-600 mt-1">{lowCount}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-yellow-600 mt-1">{lowCount}</p>
               </div>
               <Package className="w-8 h-8 text-yellow-600" />
             </div>
@@ -153,7 +153,7 @@ export default function MRPPlanningPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Purchase Orders</p>
-                <p className="text-3xl font-bold text-blue-600 mt-1">{plannedOrders.length}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-blue-600 mt-1">{plannedOrders.length}</p>
                 <p className="text-xs text-red-600 mt-1">{urgentPurchases} urgent</p>
               </div>
               <ShoppingCart className="w-8 h-8 text-blue-600" />
@@ -166,7 +166,7 @@ export default function MRPPlanningPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total PO Value</p>
-                <p className="text-3xl font-bold text-green-600 mt-1">
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-green-600 mt-1">
                   ${(totalPurchaseValue / 1000).toFixed(1)}k
                 </p>
               </div>

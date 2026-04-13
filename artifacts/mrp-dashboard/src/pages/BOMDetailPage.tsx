@@ -237,7 +237,7 @@ export default function BOMDetailPage() {
     return (
       <div className="p-4 sm:p-6 lg:p-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">BOM Not Found</h1>
+          <h1 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">BOM Not Found</h1>
           <Button onClick={() => navigate('/bom')}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to BOM List
@@ -425,7 +425,7 @@ export default function BOMDetailPage() {
               <div className="h-8 w-px bg-gray-300" />
               <div>
                 <div className="flex items-center gap-3">
-                  <h1 className="text-2xl font-bold">{bom.productName}</h1>
+                  <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{bom.productName}</h1>
                   <Badge className={getStatusBadge(bom.status)}>
                     {bom.status.toUpperCase()}
                   </Badge>
@@ -574,7 +574,7 @@ export default function BOMDetailPage() {
                       <CardTitle className="text-xs text-gray-500">Version Control</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="font-semibold text-2xl mb-1">{bom.version}</p>
+                      <p className="font-semibold text-lg sm:text-xl lg:text-2xl mb-1">{bom.version}</p>
                       <p className="text-sm text-gray-600">Revision: {revisions[0]?.revisionNumber || 'A'}</p>
                       <p className="text-xs text-gray-500 mt-2">Effective: {new Date(bom.effectiveDate).toLocaleDateString()}</p>
                     </CardContent>
@@ -585,7 +585,7 @@ export default function BOMDetailPage() {
                       <CardTitle className="text-xs text-gray-500">Material Cost</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="font-bold text-2xl text-green-600 mb-1">${bom.totalMaterialCost.toFixed(2)}</p>
+                      <p className="font-bold text-lg sm:text-xl lg:text-2xl text-green-600 mb-1">${bom.totalMaterialCost.toFixed(2)}</p>
                       <p className="text-xs text-gray-500">{extendedItems.length} materials</p>
                     </CardContent>
                   </Card>
@@ -605,7 +605,7 @@ export default function BOMDetailPage() {
                       <CardTitle className="text-xs text-green-700">Total Cost</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="font-bold text-3xl text-green-700">${bom.totalCost.toFixed(2)}</p>
+                      <p className="font-bold text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl text-green-700">${bom.totalCost.toFixed(2)}</p>
                       <p className="text-xs text-green-600">Per unit</p>
                     </CardContent>
                   </Card>
@@ -893,7 +893,7 @@ export default function BOMDetailPage() {
                             <td colSpan={8} className="p-4 text-right text-lg">
                               TOTAL MANUFACTURING COST:
                             </td>
-                            <td className="p-4 text-right text-2xl text-green-700">
+                            <td className="p-4 text-right text-lg sm:text-xl lg:text-2xl text-green-700">
                               ${bom.totalCost.toFixed(2)}
                             </td>
                             <td colSpan={isEditMode ? 2 : 1}></td>
@@ -1223,7 +1223,7 @@ export default function BOMDetailPage() {
                         </div>
                         <div className="flex justify-between items-center pt-3 border-t-2">
                           <span className="font-bold text-lg">Total Manufacturing Cost</span>
-                          <span className="font-bold text-2xl text-green-600">${bom.totalCost.toFixed(2)}</span>
+                          <span className="font-bold text-lg sm:text-xl lg:text-2xl text-green-600">${bom.totalCost.toFixed(2)}</span>
                         </div>
                       </div>
                     </CardContent>
@@ -1398,7 +1398,7 @@ export default function BOMDetailPage() {
                 {/* Print Header */}
                 <div className="flex justify-between items-start mb-6 pb-4 border-b-2">
                   <div>
-                    <h1 className="text-3xl font-bold mb-2">Bill of Materials</h1>
+                    <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold mb-2">Bill of Materials</h1>
                     <p className="text-lg font-semibold">{bom.productName}</p>
                   </div>
                   <div className="text-right">

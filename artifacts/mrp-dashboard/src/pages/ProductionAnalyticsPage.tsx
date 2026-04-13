@@ -39,7 +39,7 @@ export default function ProductionAnalyticsPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Production Analytics</h1>
+        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Production Analytics</h1>
         <p className="text-gray-600 mt-2">Material variance, scrap analysis, and production performance</p>
       </div>
 
@@ -50,7 +50,7 @@ export default function ProductionAnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Variance Cost</p>
-                <p className="text-3xl font-bold text-orange-600 mt-1">
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-orange-600 mt-1">
                   ${(varianceReport.totalVarianceCost / 1000).toFixed(1)}k
                 </p>
               </div>
@@ -64,7 +64,7 @@ export default function ProductionAnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Scrap Cost</p>
-                <p className="text-3xl font-bold text-red-600 mt-1">
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-red-600 mt-1">
                   ${(scrapSummary.totalScrapCost / 1000).toFixed(1)}k
                 </p>
                 <p className="text-xs text-gray-500 mt-1">{scrapSummary.totalScrapQty} units</p>
@@ -79,7 +79,7 @@ export default function ProductionAnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Rework Cost</p>
-                <p className="text-3xl font-bold text-yellow-600 mt-1">
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-yellow-600 mt-1">
                   ${(scrapSummary.totalReworkCost / 1000).toFixed(1)}k
                 </p>
                 <p className="text-xs text-gray-500 mt-1">{scrapSummary.totalReworkQty} units</p>
@@ -94,7 +94,7 @@ export default function ProductionAnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Production Events</p>
-                <p className="text-3xl font-bold text-blue-600 mt-1">{productionEvents.length}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-blue-600 mt-1">{productionEvents.length}</p>
               </div>
               <FileText className="w-8 h-8 text-blue-600" />
             </div>
@@ -112,15 +112,15 @@ export default function ProductionAnalyticsPage() {
             <div className="grid grid-cols-3 gap-4 mb-4">
               <div className="text-center p-4 bg-red-50 rounded-lg">
                 <p className="text-sm text-gray-600">Positive Variances (Over)</p>
-                <p className="text-2xl font-bold text-red-600">{varianceReport.positiveVariances}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-red-600">{varianceReport.positiveVariances}</p>
               </div>
               <div className="text-center p-4 bg-green-50 rounded-lg">
                 <p className="text-sm text-gray-600">Negative Variances (Under)</p>
-                <p className="text-2xl font-bold text-green-600">{varianceReport.negativeVariances}</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-green-600">{varianceReport.negativeVariances}</p>
               </div>
               <div className="text-center p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-gray-600">Avg Variance %</p>
-                <p className="text-2xl font-bold text-blue-600">{varianceReport.avgVariancePercent.toFixed(2)}%</p>
+                <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">{varianceReport.avgVariancePercent.toFixed(2)}%</p>
               </div>
             </div>
           </div>

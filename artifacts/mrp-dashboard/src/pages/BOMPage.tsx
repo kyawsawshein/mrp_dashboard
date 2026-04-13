@@ -203,7 +203,7 @@ export default function BOMPage() {
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Bill of Materials (BOM)</h1>
+          <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Bill of Materials (BOM)</h1>
           <p className="text-gray-600 mt-2">Manage product BOMs and material requirements</p>
         </div>
         <Button onClick={handleCreate}>
@@ -219,7 +219,7 @@ export default function BOMPage() {
             <CardTitle className="text-xs font-medium text-gray-600">Total BOMs</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{bomList.length}</div>
+            <div className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{bomList.length}</div>
           </CardContent>
         </Card>
         <Card>
@@ -227,7 +227,7 @@ export default function BOMPage() {
             <CardTitle className="text-xs font-medium text-gray-600">Active</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-green-600">
               {bomList.filter(b => b.status === 'active').length}
             </div>
           </CardContent>
@@ -237,7 +237,7 @@ export default function BOMPage() {
             <CardTitle className="text-xs font-medium text-gray-600">Draft</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">
+            <div className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">
               {bomList.filter(b => b.status === 'draft').length}
             </div>
           </CardContent>
@@ -247,7 +247,7 @@ export default function BOMPage() {
             <CardTitle className="text-xs font-medium text-gray-600">Obsolete</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-600">
+            <div className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-gray-600">
               {bomList.filter(b => b.status === 'obsolete').length}
             </div>
           </CardContent>

@@ -139,7 +139,7 @@ export default function ProductsPage() {
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Finished Products Inventory</h1>
+          <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Finished Products Inventory</h1>
           <p className="text-gray-600 mt-2">Track finished car seat cover products ready for sale</p>
         </div>
         <Button onClick={handleCreate}>
@@ -157,7 +157,7 @@ export default function ProductsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <Box className="w-5 h-5 text-gray-500" />
-              <span className="text-2xl font-bold">{products.length}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{products.length}</span>
             </div>
           </CardContent>
         </Card>
@@ -169,7 +169,7 @@ export default function ProductsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-yellow-500" />
-              <span className="text-2xl font-bold text-yellow-600">{lowStockProducts.length}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-yellow-600">{lowStockProducts.length}</span>
             </div>
           </CardContent>
         </Card>
@@ -181,7 +181,7 @@ export default function ProductsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-green-500" />
-              <span className="text-2xl font-bold">${(totalInventoryValue / 1000).toFixed(0)}k</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">${(totalInventoryValue / 1000).toFixed(0)}k</span>
             </div>
           </CardContent>
         </Card>
@@ -193,7 +193,7 @@ export default function ProductsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-blue-500" />
-              <span className="text-2xl font-bold text-blue-600">{avgMargin.toFixed(1)}%</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">{avgMargin.toFixed(1)}%</span>
             </div>
           </CardContent>
         </Card>

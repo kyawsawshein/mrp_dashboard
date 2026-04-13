@@ -229,7 +229,7 @@ function GanttViewContent() {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Gantt Chart View</h1>
+            <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Gantt Chart View</h1>
             <p className="text-gray-600 mt-2">Visual timeline with drag-and-drop scheduling</p>
           </div>
           <div className="flex items-center gap-4">

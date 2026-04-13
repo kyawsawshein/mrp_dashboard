@@ -149,7 +149,7 @@ export default function DepartmentPlanning() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">{departmentName} Planning</h1>
+        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">{departmentName} Planning</h1>
         <p className="text-gray-600 mt-2">Manufacturing orders and material requirements</p>
       </div>
 
@@ -162,7 +162,7 @@ export default function DepartmentPlanning() {
           <CardContent>
             <div className="flex items-center gap-2">
               <Package className="w-5 h-5 text-gray-500" />
-              <span className="text-2xl font-bold">{stats.total}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{stats.total}</span>
             </div>
           </CardContent>
         </Card>
@@ -174,7 +174,7 @@ export default function DepartmentPlanning() {
           <CardContent>
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-blue-500" />
-              <span className="text-2xl font-bold text-blue-600">{stats.planned}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">{stats.planned}</span>
             </div>
           </CardContent>
         </Card>
@@ -186,7 +186,7 @@ export default function DepartmentPlanning() {
           <CardContent>
             <div className="flex items-center gap-2">
               <Package className="w-5 h-5 text-yellow-500" />
-              <span className="text-2xl font-bold text-yellow-600">{stats.inProgress}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-yellow-600">{stats.inProgress}</span>
             </div>
           </CardContent>
         </Card>
@@ -198,7 +198,7 @@ export default function DepartmentPlanning() {
           <CardContent>
             <div className="flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-red-500" />
-              <span className="text-2xl font-bold text-red-600">{stats.delayed}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-red-600">{stats.delayed}</span>
             </div>
           </CardContent>
         </Card>
@@ -210,7 +210,7 @@ export default function DepartmentPlanning() {
           <CardContent>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-500" />
-              <span className="text-2xl font-bold text-green-600">{stats.completed}</span>
+              <span className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-green-600">{stats.completed}</span>
             </div>
           </CardContent>
         </Card>
@@ -291,7 +291,7 @@ export default function DepartmentPlanning() {
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-gray-600">Quantity</p>
-                    <p className="text-2xl font-bold">{selectedOrder.quantity}</p>
+                    <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{selectedOrder.quantity}</p>
                     <p className="text-xs text-gray-500">units</p>
                     {(selectedOrder.scrapQuantity || selectedOrder.reworkQuantity) && (
                       <div className="mt-2 text-xs">
