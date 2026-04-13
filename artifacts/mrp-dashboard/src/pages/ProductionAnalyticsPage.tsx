@@ -37,7 +37,7 @@ export default function ProductionAnalyticsPage() {
   const COLORS = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#8b5cf6'];
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Production Analytics</h1>
         <p className="text-gray-600 mt-2">Material variance, scrap analysis, and production performance</p>

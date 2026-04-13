@@ -81,8 +81,8 @@ export function CreateOrderDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
-          <Plus className="w-4 h-4 mr-2" />
-          Create Order
+          <Plus className="w-4 h-4 sm:mr-2" />
+          <span className="hidden sm:inline">Create Order</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">

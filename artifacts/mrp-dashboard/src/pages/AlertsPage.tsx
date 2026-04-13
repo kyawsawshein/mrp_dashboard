@@ -138,7 +138,7 @@ export default function AlertsPage() {
   );
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Alerts & Notifications</h1>
         <p className="text-gray-600 mt-2">Real-time system alerts and manufacturing notifications</p>

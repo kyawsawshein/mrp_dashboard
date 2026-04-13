@@ -235,7 +235,7 @@ export default function BOMDetailPage() {
 
   if (!bom) {
     return (
-      <div className="p-8">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">BOM Not Found</h1>
           <Button onClick={() => navigate('/bom')}>
@@ -521,7 +521,7 @@ export default function BOMDetailPage() {
 
         {/* Scrollable Content Area */}
         <div className="flex-1 overflow-auto">
-          <div className="p-8">
+          <div className="p-4 sm:p-6 lg:p-8">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="no-print">
               <TabsList className="mb-6">
                 <TabsTrigger value="details">

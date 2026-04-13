@@ -104,11 +104,11 @@ export function GlobalSearch() {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative w-full max-w-xs sm:max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
         <Input
-          placeholder="Search orders, inventory... (⌘K)"
-          className="pl-9 w-64"
+          placeholder="Search... (⌘K)"
+          className="pl-9 w-full"
           onClick={() => setOpen(true)}
           readOnly
         />
