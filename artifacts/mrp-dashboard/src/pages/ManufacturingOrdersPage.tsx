@@ -31,7 +31,6 @@ export default function ManufacturingOrdersPage() {
     return matchesSearch && matchesStatus && matchesDepartment;
   });
 
-  // CRUD Operations
   const handleCreate = () => {
     setFormData({
       product: '',
@@ -74,14 +73,12 @@ export default function ManufacturingOrdersPage() {
     }
 
     if (isEditDialogOpen && selectedOrder) {
-      // Update existing order
-      setOrders(orders.map(o => 
+      setOrders(orders.map(o =>
         o.id === selectedOrder.id ? { ...formData as ManufacturingOrder, id: selectedOrder.id } : o
       ));
       toast.success(`Manufacturing Order "${selectedOrder.id}" updated successfully`);
       setIsEditDialogOpen(false);
     } else {
-      // Create new order
       const newOrder: ManufacturingOrder = {
         ...formData as ManufacturingOrder,
         id: `MO-2026-${String(orders.length + 1).padStart(3, '0')}`,
@@ -91,12 +88,12 @@ export default function ManufacturingOrdersPage() {
       toast.success(`Manufacturing Order "${newOrder.id}" created successfully`);
       setIsCreateDialogOpen(false);
     }
-    
+
     setFormData({});
     setSelectedOrder(null);
   };
 
-  const updateFormField = (field: keyof ManufacturingOrder, value: any) => {
+  const updateFormField = (field: keyof ManufacturingOrder, value: string | number) => {
     setFormData({ ...formData, [field]: value });
   };
 
@@ -122,23 +119,125 @@ export default function ManufacturingOrdersPage() {
     }
   };
 
+  const OrderFormFields = () => (
+    <div className="grid gap-4 py-4">
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="product" className="text-right">Product</Label>
+        <Input
+          id="product"
+          value={formData.product || ''}
+          onChange={(e) => updateFormField('product', e.target.value)}
+          className="col-span-3"
+          placeholder="e.g., Premium Leather Sedan Seat Covers"
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="quantity" className="text-right">Quantity</Label>
+        <Input
+          id="quantity"
+          type="number"
+          value={formData.quantity || ''}
+          onChange={(e) => updateFormField('quantity', parseInt(e.target.value))}
+          className="col-span-3"
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="department" className="text-right">Department</Label>
+        <Select value={formData.department || ''} onValueChange={(v) => updateFormField('department', v)}>
+          <SelectTrigger className="col-span-3">
+            <SelectValue placeholder="Select department" />
+          </SelectTrigger>
+          <SelectContent>
+            {departments.map(dept => (
+              <SelectItem key={dept.id} value={dept.id}>{dept.name}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="status" className="text-right">Status</Label>
+        <Select value={formData.status || ''} onValueChange={(v) => updateFormField('status', v)}>
+          <SelectTrigger className="col-span-3">
+            <SelectValue placeholder="Select status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="planned">Planned</SelectItem>
+            <SelectItem value="in-progress">In Progress</SelectItem>
+            <SelectItem value="completed">Completed</SelectItem>
+            <SelectItem value="delayed">Delayed</SelectItem>
+            <SelectItem value="on-hold">On Hold</SelectItem>
+            <SelectItem value="rework">Rework</SelectItem>
+            <SelectItem value="cancelled">Cancelled</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="priority" className="text-right">Priority</Label>
+        <Select value={formData.priority || ''} onValueChange={(v) => updateFormField('priority', v)}>
+          <SelectTrigger className="col-span-3">
+            <SelectValue placeholder="Select priority" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="high">High</SelectItem>
+            <SelectItem value="medium">Medium</SelectItem>
+            <SelectItem value="low">Low</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="startDate" className="text-right">Start Date</Label>
+        <Input
+          id="startDate"
+          type="date"
+          value={formData.startDate || ''}
+          onChange={(e) => updateFormField('startDate', e.target.value)}
+          className="col-span-3"
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="endDate" className="text-right">End Date</Label>
+        <Input
+          id="endDate"
+          type="date"
+          value={formData.endDate || ''}
+          onChange={(e) => updateFormField('endDate', e.target.value)}
+          className="col-span-3"
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="completion" className="text-right">Completion %</Label>
+        <Input
+          id="completion"
+          type="number"
+          min="0"
+          max="100"
+          value={formData.completion || ''}
+          onChange={(e) => updateFormField('completion', parseInt(e.target.value))}
+          className="col-span-3"
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div className="p-4 sm:p-6 lg:p-8">
-      <div className="mb-8 flex items-center justify-between">
+
+      {/* Page Header — stacks on mobile, side-by-side on sm+ */}
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Manufacturing Orders</h1>
-          <p className="text-gray-600 mt-2">Manage and track all manufacturing orders across departments</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Manufacturing Orders</h1>
+          <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage and track all manufacturing orders across departments</p>
         </div>
-        <Button onClick={handleCreate}>
+        <Button onClick={handleCreate} className="w-full sm:w-auto shrink-0">
           <Plus className="w-4 h-4 mr-2" />
           Create Order
         </Button>
       </div>
 
-      {/* Filters */}
+      {/* Filters — stack on mobile, row on sm+ */}
       <Card className="mb-6">
         <CardContent className="p-4">
-          <div className="flex gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <Input
@@ -149,7 +248,7 @@ export default function ManufacturingOrdersPage() {
               />
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="sm:w-[160px]">
                 <SelectValue placeholder="All Statuses" />
               </SelectTrigger>
               <SelectContent>
@@ -164,7 +263,7 @@ export default function ManufacturingOrdersPage() {
               </SelectContent>
             </Select>
             <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="sm:w-[180px]">
                 <SelectValue placeholder="All Departments" />
               </SelectTrigger>
               <SelectContent>
@@ -178,8 +277,73 @@ export default function ManufacturingOrdersPage() {
         </CardContent>
       </Card>
 
-      {/* Orders Table */}
-      <Card>
+      {filteredOrders.length === 0 && (
+        <div className="text-center py-12 text-gray-500">
+          No orders found matching your search criteria
+        </div>
+      )}
+
+      {/* ── Mobile card list (hidden on lg+) ── */}
+      <div className="lg:hidden space-y-3">
+        {filteredOrders.map((order) => {
+          const deptName = departments.find(d => d.id === order.department)?.name || order.department;
+          return (
+            <Card key={order.id} className="overflow-hidden">
+              <CardContent className="p-4">
+                {/* Row 1: Order ID + Status */}
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-sm text-gray-900">{order.id}</span>
+                  <Badge variant="outline" className={`text-xs ${getStatusBadge(order.status)}`}>
+                    {order.status}
+                  </Badge>
+                </div>
+
+                {/* Row 2: Product name */}
+                <p className="text-sm font-medium text-gray-800 mb-3 leading-snug">{order.product}</p>
+
+                {/* Row 3: Qty + Priority + Department */}
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <div className="flex items-center gap-1 text-xs text-gray-500">
+                    <Package className="w-3.5 h-3.5" />
+                    <span>{order.quantity} units</span>
+                  </div>
+                  <Badge variant="outline" className={`text-xs ${getPriorityBadge(order.priority)}`}>
+                    {order.priority}
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">{deptName}</Badge>
+                </div>
+
+                {/* Row 4: Progress */}
+                <div className="mb-3">
+                  <div className="flex justify-between text-xs text-gray-500 mb-1">
+                    <span>Progress</span>
+                    <span>{order.completion}%</span>
+                  </div>
+                  <Progress value={order.completion} className="h-1.5" />
+                </div>
+
+                {/* Row 5: Dates + Actions */}
+                <div className="flex items-center justify-between">
+                  <div className="text-xs text-gray-400">
+                    {new Date(order.startDate).toLocaleDateString()} → {new Date(order.endDate).toLocaleDateString()}
+                  </div>
+                  <div className="flex gap-2">
+                    <Button size="sm" variant="outline" onClick={() => handleEdit(order)}>
+                      <Pencil className="w-3.5 h-3.5" />
+                    </Button>
+                    <Button size="sm" variant="outline" onClick={() => handleDelete(order)}>
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+
+      {/* ── Desktop table (hidden below lg) ── */}
+      <Card className="hidden lg:block">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -199,7 +363,6 @@ export default function ManufacturingOrdersPage() {
               <tbody>
                 {filteredOrders.map((order, index) => {
                   const deptName = departments.find(d => d.id === order.department)?.name || order.department;
-                  
                   return (
                     <tr key={order.id} className={`border-b border-gray-200 hover:bg-gray-50 ${
                       index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'
@@ -217,9 +380,7 @@ export default function ManufacturingOrdersPage() {
                         </div>
                       </td>
                       <td className="p-4">
-                        <Badge variant="outline" className="text-xs">
-                          {deptName}
-                        </Badge>
+                        <Badge variant="outline" className="text-xs">{deptName}</Badge>
                       </td>
                       <td className="p-4">
                         <Badge variant="outline" className={getStatusBadge(order.status)}>
@@ -264,150 +425,17 @@ export default function ManufacturingOrdersPage() {
         </CardContent>
       </Card>
 
-      {filteredOrders.length === 0 && (
-        <div className="text-center py-12 text-gray-500">
-          No orders found matching your search criteria
-        </div>
-      )}
-
       {/* Create Dialog */}
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle>Create New Manufacturing Order</DialogTitle>
-            <DialogDescription>
-              Add a new manufacturing order to the system.
-            </DialogDescription>
+            <DialogDescription>Add a new manufacturing order to the system.</DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="product" className="text-right">
-                Product
-              </Label>
-              <Input
-                id="product"
-                value={formData.product || ''}
-                onChange={(e) => updateFormField('product', e.target.value)}
-                className="col-span-3"
-                placeholder="e.g., Premium Leather Sedan Seat Covers"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="quantity" className="text-right">
-                Quantity
-              </Label>
-              <Input
-                id="quantity"
-                type="number"
-                value={formData.quantity || ''}
-                onChange={(e) => updateFormField('quantity', parseInt(e.target.value))}
-                className="col-span-3"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="department" className="text-right">
-                Department
-              </Label>
-              <Select
-                value={formData.department || ''}
-                onValueChange={(value) => updateFormField('department', value)}
-              >
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select department" />
-                </SelectTrigger>
-                <SelectContent>
-                  {departments.map(dept => (
-                    <SelectItem key={dept.id} value={dept.id}>{dept.name}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="status" className="text-right">
-                Status
-              </Label>
-              <Select
-                value={formData.status || ''}
-                onValueChange={(value) => updateFormField('status', value)}
-              >
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="planned">Planned</SelectItem>
-                  <SelectItem value="in-progress">In Progress</SelectItem>
-                  <SelectItem value="completed">Completed</SelectItem>
-                  <SelectItem value="delayed">Delayed</SelectItem>
-                  <SelectItem value="on-hold">On Hold</SelectItem>
-                  <SelectItem value="rework">Rework</SelectItem>
-                  <SelectItem value="cancelled">Cancelled</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="priority" className="text-right">
-                Priority
-              </Label>
-              <Select
-                value={formData.priority || ''}
-                onValueChange={(value) => updateFormField('priority', value)}
-              >
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select priority" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="high">High</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="low">Low</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="startDate" className="text-right">
-                Start Date
-              </Label>
-              <Input
-                id="startDate"
-                type="date"
-                value={formData.startDate || ''}
-                onChange={(e) => updateFormField('startDate', e.target.value)}
-                className="col-span-3"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="endDate" className="text-right">
-                End Date
-              </Label>
-              <Input
-                id="endDate"
-                type="date"
-                value={formData.endDate || ''}
-                onChange={(e) => updateFormField('endDate', e.target.value)}
-                className="col-span-3"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="completion" className="text-right">
-                Completion %
-              </Label>
-              <Input
-                id="completion"
-                type="number"
-                min="0"
-                max="100"
-                value={formData.completion || ''}
-                onChange={(e) => updateFormField('completion', parseInt(e.target.value))}
-                className="col-span-3"
-              />
-            </div>
-          </div>
+          <OrderFormFields />
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button type="button" onClick={saveOrder}>
-              Create
-            </Button>
+            <Button type="button" variant="outline" onClick={() => setIsCreateDialogOpen(false)}>Cancel</Button>
+            <Button type="button" onClick={saveOrder}>Create</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -417,156 +445,28 @@ export default function ManufacturingOrdersPage() {
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle>Edit Manufacturing Order</DialogTitle>
-            <DialogDescription>
-              Update the details of the manufacturing order.
-            </DialogDescription>
+            <DialogDescription>Update the details of the manufacturing order.</DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="product" className="text-right">
-                Product
-              </Label>
-              <Input
-                id="product"
-                value={formData.product || ''}
-                onChange={(e) => updateFormField('product', e.target.value)}
-                className="col-span-3"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="quantity" className="text-right">
-                Quantity
-              </Label>
-              <Input
-                id="quantity"
-                type="number"
-                value={formData.quantity || ''}
-                onChange={(e) => updateFormField('quantity', parseInt(e.target.value))}
-                className="col-span-3"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="department" className="text-right">
-                Department
-              </Label>
-              <Select
-                value={formData.department || ''}
-                onValueChange={(value) => updateFormField('department', value)}
-              >
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select department" />
-                </SelectTrigger>
-                <SelectContent>
-                  {departments.map(dept => (
-                    <SelectItem key={dept.id} value={dept.id}>{dept.name}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="status" className="text-right">
-                Status
-              </Label>
-              <Select
-                value={formData.status || ''}
-                onValueChange={(value) => updateFormField('status', value)}
-              >
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="planned">Planned</SelectItem>
-                  <SelectItem value="in-progress">In Progress</SelectItem>
-                  <SelectItem value="completed">Completed</SelectItem>
-                  <SelectItem value="delayed">Delayed</SelectItem>
-                  <SelectItem value="on-hold">On Hold</SelectItem>
-                  <SelectItem value="rework">Rework</SelectItem>
-                  <SelectItem value="cancelled">Cancelled</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="priority" className="text-right">
-                Priority
-              </Label>
-              <Select
-                value={formData.priority || ''}
-                onValueChange={(value) => updateFormField('priority', value)}
-              >
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select priority" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="high">High</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="low">Low</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="startDate" className="text-right">
-                Start Date
-              </Label>
-              <Input
-                id="startDate"
-                type="date"
-                value={formData.startDate || ''}
-                onChange={(e) => updateFormField('startDate', e.target.value)}
-                className="col-span-3"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="endDate" className="text-right">
-                End Date
-              </Label>
-              <Input
-                id="endDate"
-                type="date"
-                value={formData.endDate || ''}
-                onChange={(e) => updateFormField('endDate', e.target.value)}
-                className="col-span-3"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="completion" className="text-right">
-                Completion %
-              </Label>
-              <Input
-                id="completion"
-                type="number"
-                min="0"
-                max="100"
-                value={formData.completion || ''}
-                onChange={(e) => updateFormField('completion', parseInt(e.target.value))}
-                className="col-span-3"
-              />
-            </div>
-          </div>
+          <OrderFormFields />
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setIsEditDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button type="button" onClick={saveOrder}>
-              Update
-            </Button>
+            <Button type="button" variant="outline" onClick={() => setIsEditDialogOpen(false)}>Cancel</Button>
+            <Button type="button" onClick={saveOrder}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      {/* Delete Dialog */}
+      {/* Delete Confirmation */}
       <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Delete Manufacturing Order</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the manufacturing order.
+              Are you sure you want to delete order "{selectedOrder?.id}"? This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDelete}>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} className="bg-red-600 hover:bg-red-700">
               Delete
             </AlertDialogAction>
           </AlertDialogFooter>
