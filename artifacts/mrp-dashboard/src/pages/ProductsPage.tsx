@@ -137,19 +137,19 @@ export default function ProductsPage() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-6 sm:mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Finished Products Inventory</h1>
-          <p className="text-gray-600 mt-2">Track finished car seat cover products ready for sale</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Finished Products Inventory</h1>
+          <p className="text-gray-600 mt-1 text-sm sm:text-base">Track finished car seat cover products ready for sale</p>
         </div>
-        <Button onClick={handleCreate}>
+        <Button onClick={handleCreate} className="w-full sm:w-auto shrink-0">
           <Plus className="w-4 h-4 mr-2" />
           Add Product
         </Button>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-medium text-gray-600">Total Products</CardTitle>
@@ -202,7 +202,7 @@ export default function ProductsPage() {
       {/* Filters */}
       <Card className="mb-6">
         <CardContent className="p-4">
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <Input
@@ -238,8 +238,54 @@ export default function ProductsPage() {
         </CardContent>
       </Card>
 
-      {/* Products Table */}
-      <Card>
+      {/* Mobile Card List */}
+      <div className="lg:hidden space-y-3 mb-4">
+        {filteredProducts.map((product) => {
+          const stockPct = (product.currentStock / product.maxStock) * 100;
+          const margin = ((product.retailPrice - product.productionCost) / product.retailPrice) * 100;
+          return (
+            <Card key={product.id}>
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <div>
+                    <p className="font-semibold text-gray-900 text-sm">{product.name}</p>
+                    <p className="text-xs text-gray-500">{product.sku} · {product.vehicleType}</p>
+                  </div>
+                  <Badge variant="outline" className={`shrink-0 text-xs ${getStatusBadge(product.status)}`}>
+                    {getStatusText(product.status)}
+                  </Badge>
+                </div>
+                <div className="mb-2">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-sm font-medium">{product.currentStock} {product.unit}</span>
+                    <span className="text-xs text-gray-500">max {product.maxStock}</span>
+                  </div>
+                  <Progress value={stockPct} className="h-1.5" />
+                </div>
+                <div className="grid grid-cols-2 gap-1.5 text-xs text-gray-600 mb-3">
+                  <div><span className="text-gray-400">Category: </span>{product.category}</div>
+                  <div><span className="text-gray-400">Retail: </span><span className="text-green-600 font-medium">${product.retailPrice.toFixed(2)}</span></div>
+                  <div><span className="text-gray-400">Cost: </span>${product.productionCost.toFixed(2)}</div>
+                  <div><span className="text-gray-400">Margin: </span><span className="text-blue-600 font-medium">{margin.toFixed(1)}%</span></div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {(product.status === 'low-stock' || product.status === 'out-of-stock') && (
+                    <Button size="sm" variant="default">Schedule Production</Button>
+                  )}
+                  <Button size="sm" variant="outline" onClick={() => handleEdit(product)}><Pencil className="w-4 h-4" /></Button>
+                  <Button size="sm" variant="outline" onClick={() => handleDelete(product)}><Trash2 className="w-4 h-4" /></Button>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+        {filteredProducts.length === 0 && (
+          <div className="text-center py-12 text-gray-500">No products found matching your search criteria</div>
+        )}
+      </div>
+
+      {/* Desktop Table */}
+      <Card className="hidden lg:block">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -361,7 +407,7 @@ export default function ProductsPage() {
       </Card>
 
       {filteredProducts.length === 0 && (
-        <div className="text-center py-12 text-gray-500">
+        <div className="hidden lg:block text-center py-12 text-gray-500">
           No products found matching your search criteria
         </div>
       )}

@@ -15,12 +15,12 @@ export default function AnalyticsPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Analytics & KPIs</h1>
-        <p className="text-gray-600 mt-2">Production efficiency, OEE tracking, and performance metrics</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Analytics & KPIs</h1>
+        <p className="text-gray-600 mt-1 text-sm sm:text-base">Production efficiency, OEE tracking, and performance metrics</p>
       </div>
 
       {/* KPI Summary Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-medium text-gray-600 flex items-center gap-2">
@@ -84,7 +84,7 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         {/* Production Trends */}
         <Card>
           <CardHeader>
@@ -132,7 +132,7 @@ export default function AnalyticsPage() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
         {/* Department Performance */}
         <Card>
           <CardHeader>

@@ -142,12 +142,12 @@ export default function WorkCentersPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Work Centers & Routing</h1>
-        <p className="text-gray-600 mt-2">Manage manufacturing resources, capacity, and operations routing</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Work Centers & Routing</h1>
+        <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage manufacturing resources, capacity, and operations routing</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -203,7 +203,7 @@ export default function WorkCentersPage() {
 
       {/* Alerts */}
       {(bottlenecks.length > 0 || maintenanceDue.length > 0) && (
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 sm:mb-8">
           {bottlenecks.length > 0 && (
             <Card className="border-orange-200 bg-orange-50">
               <CardHeader>
@@ -253,7 +253,7 @@ export default function WorkCentersPage() {
       )}
 
       {/* Department Filter */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6">
         <Button
           variant={selectedDepartment === 'all' ? 'default' : 'outline'}
           onClick={() => setSelectedDepartment('all')}
@@ -297,7 +297,7 @@ export default function WorkCentersPage() {
           <CardTitle>Work Centers ({filteredWorkCenters.length})</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {filteredWorkCenters.map(wc => {
               const capacity = calculateWorkCenterCapacity(wc, 7);
               

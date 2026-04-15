@@ -156,8 +156,8 @@ export default function ShopFloorTerminal() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Shop Floor Terminal</h1>
-        <p className="text-gray-600 mt-2">Real-time production tracking and material consumption</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Shop Floor Terminal</h1>
+        <p className="text-gray-600 mt-1 text-sm sm:text-base">Real-time production tracking and material consumption</p>
       </div>
 
       {/* Operator Login Section */}
@@ -169,7 +169,7 @@ export default function ShopFloorTerminal() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <Label htmlFor="operator">Operator Name *</Label>
               <Input
@@ -220,7 +220,7 @@ export default function ShopFloorTerminal() {
             <CardTitle>Order Details: {selectedOrderData.id}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
               <div>
                 <p className="text-sm text-gray-600">Product</p>
                 <p className="font-medium text-gray-900">{selectedOrderData.product}</p>

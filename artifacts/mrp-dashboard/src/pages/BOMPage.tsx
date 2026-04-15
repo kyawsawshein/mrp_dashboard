@@ -201,19 +201,19 @@ export default function BOMPage() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8">
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-6 sm:mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Bill of Materials (BOM)</h1>
-          <p className="text-gray-600 mt-2">Manage product BOMs and material requirements</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Bill of Materials (BOM)</h1>
+          <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage product BOMs and material requirements</p>
         </div>
-        <Button onClick={handleCreate}>
+        <Button onClick={handleCreate} className="w-full sm:w-auto shrink-0">
           <Plus className="w-4 h-4 mr-2" />
           Create BOM
         </Button>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-medium text-gray-600">Total BOMs</CardTitle>

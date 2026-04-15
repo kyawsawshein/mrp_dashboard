@@ -39,12 +39,12 @@ export default function ProductionAnalyticsPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Production Analytics</h1>
-        <p className="text-gray-600 mt-2">Material variance, scrap analysis, and production performance</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Production Analytics</h1>
+        <p className="text-gray-600 mt-1 text-sm sm:text-base">Material variance, scrap analysis, and production performance</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -109,7 +109,7 @@ export default function ProductionAnalyticsPage() {
         </CardHeader>
         <CardContent>
           <div className="mb-6">
-            <div className="grid grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4">
               <div className="text-center p-4 bg-red-50 rounded-lg">
                 <p className="text-sm text-gray-600">Positive Variances (Over)</p>
                 <p className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold text-red-600">{varianceReport.positiveVariances}</p>
@@ -172,7 +172,7 @@ export default function ProductionAnalyticsPage() {
       </Card>
 
       {/* Scrap & Rework Analysis */}
-      <div className="grid grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 mb-6 sm:mb-8">
         <Card>
           <CardHeader>
             <CardTitle>Scrap & Rework by Department</CardTitle>
@@ -301,7 +301,7 @@ export default function ProductionAnalyticsPage() {
                     <span className="font-medium text-red-600">${record.cost.toFixed(2)}</span>
                   </div>
                 </div>
-                <div className="grid grid-cols-4 gap-4 text-sm mb-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-sm mb-2">
                   <div>
                     <p className="text-gray-600">Quantity</p>
                     <p className="font-medium">{record.quantity} {record.unit}</p>

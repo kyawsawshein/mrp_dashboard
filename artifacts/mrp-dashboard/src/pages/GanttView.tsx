@@ -227,10 +227,10 @@ function GanttViewContent() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
           <div>
-            <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Gantt Chart View</h1>
-            <p className="text-gray-600 mt-2">Visual timeline with drag-and-drop scheduling</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Gantt Chart View</h1>
+            <p className="text-gray-600 mt-1 text-sm sm:text-base">Visual timeline with drag-and-drop scheduling</p>
           </div>
           <div className="flex items-center gap-4">
             <Button variant="outline" onClick={previousMonth}>
@@ -247,11 +247,11 @@ function GanttViewContent() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
             <label className="text-sm font-medium text-gray-700">Filter by Department:</label>
             <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
-              <SelectTrigger className="w-[250px]">
+              <SelectTrigger className="w-full sm:w-[250px]">
                 <SelectValue placeholder="Select department" />
               </SelectTrigger>
               <SelectContent>
@@ -264,10 +264,17 @@ function GanttViewContent() {
               </SelectContent>
             </Select>
           </div>
-          <Button variant="outline" onClick={handleExport}>
+          <Button variant="outline" onClick={handleExport} className="w-full sm:w-auto shrink-0">
             <Download className="w-4 h-4 mr-2" />
             Export PDF
           </Button>
+        </div>
+
+        {/* Mobile hint */}
+        <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg lg:hidden">
+          <p className="text-xs text-amber-800">
+            <span className="font-semibold">Tip:</span> Scroll horizontally to view the full Gantt chart. For the best experience, use a larger screen.
+          </p>
         </div>
       </div>
 

@@ -72,12 +72,12 @@ export default function ProductionSchedulingPage() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">Production Scheduling & Capacity Planning</h1>
-            <p className="text-gray-600 mt-2">Optimize workload, detect conflicts, and balance department capacity</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Production Scheduling & Capacity Planning</h1>
+            <p className="text-gray-600 mt-1 text-sm sm:text-base">Optimize workload, detect conflicts, and balance department capacity</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 shrink-0">
             <Button variant="outline">
               <RefreshCw className="w-4 h-4 mr-2" />
               Recalculate
@@ -91,7 +91,7 @@ export default function ProductionSchedulingPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -175,7 +175,7 @@ export default function ProductionSchedulingPage() {
                       Overloaded by {conflict.overload.toFixed(1)}h
                     </Badge>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-sm">
                     <div>
                       <p className="text-gray-600">Capacity</p>
                       <p className="font-medium">{conflict.capacity}h</p>
