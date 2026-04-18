@@ -149,12 +149,12 @@ export default function DepartmentPlanning() {
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-xl sm:text-lg sm:text-xl lg:text-2xl lg:text-3xl font-bold text-gray-900">{departmentName} Planning</h1>
-        <p className="text-gray-600 mt-2">Manufacturing orders and material requirements</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{departmentName} Planning</h1>
+        <p className="text-gray-600 mt-1 text-sm sm:text-base">Manufacturing orders and material requirements</p>
       </div>
 
       {/* Department Stats */}
-      <div className="grid grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-medium text-gray-600">Total Orders</CardTitle>
@@ -217,7 +217,7 @@ export default function DepartmentPlanning() {
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Manufacturing Orders List */}
         <div className="col-span-1 space-y-4">
           <h2 className="text-lg font-semibold text-gray-900">Manufacturing Orders</h2>
@@ -277,7 +277,7 @@ export default function DepartmentPlanning() {
         </div>
 
         {/* Details Panel */}
-        <div className="col-span-2">
+        <div className="col-span-1 lg:col-span-2">
           {selectedOrder ? (
             <Card>
               <CardHeader>

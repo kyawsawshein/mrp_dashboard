@@ -416,16 +416,16 @@ export default function BOMDetailPage() {
       <div className="h-screen flex flex-col bg-gray-50">
         {/* Fixed Header */}
         <div className="bg-white border-b px-8 py-4 no-print">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm" onClick={() => navigate('/bom')}>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between mb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+              <Button variant="outline" size="sm" onClick={() => navigate('/bom')} className="w-fit">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to List
               </Button>
-              <div className="h-8 w-px bg-gray-300" />
+              <div className="hidden sm:block h-8 w-px bg-gray-300" />
               <div>
-                <div className="flex items-center gap-3">
-                  <h1 className="text-xl sm:text-lg sm:text-xl lg:text-2xl font-bold">{bom.productName}</h1>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h1 className="text-xl sm:text-2xl font-bold">{bom.productName}</h1>
                   <Badge className={getStatusBadge(bom.status)}>
                     {bom.status.toUpperCase()}
                   </Badge>
@@ -436,7 +436,7 @@ export default function BOMDetailPage() {
                     </Badge>
                   )}
                 </div>
-                <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 mt-1">
                   <span className="flex items-center gap-1">
                     <Package className="w-3 h-3" />
                     BOM #: <strong>{bom.id}</strong>
@@ -459,7 +459,7 @@ export default function BOMDetailPage() {
               </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2 shrink-0">
               {isEditMode ? (
                 <>
                   <Button variant="outline" size="sm" onClick={() => setIsEditMode(false)}>
@@ -499,7 +499,7 @@ export default function BOMDetailPage() {
           </div>
 
           {/* Quick Stats Bar */}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-2 sm:gap-4">
             <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg">
               <Layers className="w-4 h-4 text-blue-600" />
               <span className="text-sm font-medium">{extendedItems.length} Items</span>
@@ -557,7 +557,7 @@ export default function BOMDetailPage() {
               {/* BOM Details Tab - Full Width Material List */}
               <TabsContent value="details" className="space-y-6">
                 {/* Header Cards Row */}
-                <div className="grid grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                   <Card>
                     <CardHeader className="pb-3">
                       <CardTitle className="text-xs text-gray-500">Product Information</CardTitle>
@@ -740,7 +740,7 @@ export default function BOMDetailPage() {
                                 {isExpanded && (
                                   <tr className="bg-gray-50 border-b">
                                     <td colSpan={isEditMode ? 11 : 10} className="p-6">
-                                      <div className="grid grid-cols-3 gap-6">
+                                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                                         {/* Column 1: Specifications */}
                                         <div>
                                           <h4 className="font-semibold text-sm mb-3 text-gray-700 flex items-center gap-2">
@@ -953,7 +953,7 @@ export default function BOMDetailPage() {
                             )}
                           </div>
 
-                          <div className="grid grid-cols-4 gap-6">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                             {/* Technical Specs */}
                             {item.specifications && Object.keys(item.specifications).length > 0 && (
                               <div className="col-span-2">
@@ -1111,7 +1111,7 @@ export default function BOMDetailPage() {
                     </Button>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {attachments.map((attachment) => (
                         <div key={attachment.id} className="border rounded-lg p-4 hover:bg-gray-50 hover:shadow-md transition-all">
                           <div className="flex items-start justify-between mb-3">
@@ -1202,7 +1202,7 @@ export default function BOMDetailPage() {
 
               {/* Cost Analysis Tab */}
               <TabsContent value="costing">
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                   <Card>
                     <CardHeader>
                       <CardTitle>Cost Breakdown</CardTitle>
@@ -1317,7 +1317,7 @@ export default function BOMDetailPage() {
 
               {/* Production Info Tab */}
               <TabsContent value="production">
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                   <Card>
                     <CardHeader>
                       <CardTitle>Production Information</CardTitle>
