@@ -1,0 +1,20 @@
+services:
+  mrpdb:
+    image: postgres:17
+    container_name: mrpdb
+    restart: always
+    environment:
+      POSTGRES_DB: mrp
+      POSTGRES_USER: mrp
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mrp-net
+
+networks:
+  mrp-net:
+    driver: bridge
+
+volumes:
+  postgres_data:

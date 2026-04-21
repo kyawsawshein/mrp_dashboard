@@ -5,30 +5,20 @@ import { Checkbox } from './ui/checkbox';
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
 import { Plus, Trash2 } from 'lucide-react';
-import { MaterialCategory, InventoryItem, FabricSpecification, FoamSpecification, FastenerSpecification, ThreadSpecification, PackagingSpecification, FabricType, FiberType, FinishType, FoamType, FastenerType } from '../data/mockData';
+import { InventoryItem } from '@workspace/api-client-react';
 
 type UpdateSpecFn<T> = (field: keyof T, value: T[keyof T]) => void;
 
 interface MaterialFormFieldsProps {
   formData: Partial<InventoryItem>;
   updateFormField: UpdateSpecFn<InventoryItem>;
-  updateFabricSpec: UpdateSpecFn<FabricSpecification>;
-  updateFoamSpec: UpdateSpecFn<FoamSpecification>;
-  updateFastenerSpec: UpdateSpecFn<FastenerSpecification>;
-  updateThreadSpec: UpdateSpecFn<ThreadSpecification>;
-  updatePackagingSpec: UpdateSpecFn<PackagingSpecification>;
 }
 
 export function MaterialFormFields({
   formData,
   updateFormField,
-  updateFabricSpec,
-  updateFoamSpec,
-  updateFastenerSpec,
-  updateThreadSpec,
-  updatePackagingSpec,
 }: MaterialFormFieldsProps) {
-  
+
   // Helper for fiber composition management
   const addFiber = () => {
     const currentComposition = formData.fabricSpec?.fiberComposition || [];
@@ -61,7 +51,7 @@ export function MaterialFormFields({
       {/* Common Fields */}
       <div className="space-y-4">
         <h3 className="font-semibold text-sm border-b pb-2">Basic Information</h3>
-        
+
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="name">Material Name *</Label>
@@ -147,34 +137,34 @@ export function MaterialFormFields({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="minStock">Min Stock</Label>
+            <Label htmlFor="minimumStock">Min Stock</Label>
             <Input
-              id="minStock"
+              id="minimumStock"
               type="number"
-              value={formData.minStock || 0}
-              onChange={(e) => updateFormField('minStock', parseFloat(e.target.value))}
+              value={formData.minimumStock || 0}
+              onChange={(e) => updateFormField('minimumStock', parseFloat(e.target.value))}
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="maxStock">Max Stock</Label>
+            <Label htmlFor="maximumStock">Max Stock</Label>
             <Input
-              id="maxStock"
+              id="maximumStock"
               type="number"
-              value={formData.maxStock || 0}
-              onChange={(e) => updateFormField('maxStock', parseFloat(e.target.value))}
+              value={formData.maximumStock || 0}
+              onChange={(e) => updateFormField('maximumStock', parseFloat(e.target.value))}
             />
           </div>
         </div>
 
         <div className="grid grid-cols-4 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="reorderPoint">Reorder Point</Label>
+            <Label htmlFor="minimumStock">Reorder Point</Label>
             <Input
-              id="reorderPoint"
+              id="minimumStock"
               type="number"
-              value={formData.reorderPoint || 0}
-              onChange={(e) => updateFormField('reorderPoint', parseFloat(e.target.value))}
+              value={formData.minimumStock || 0}
+              onChange={(e) => updateFormField('minimumStock', parseFloat(e.target.value))}
             />
           </div>
 
@@ -189,13 +179,13 @@ export function MaterialFormFields({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="costPerUnit">Cost per Unit ($)</Label>
+            <Label htmlFor="unitCost">Cost per Unit ($)</Label>
             <Input
-              id="costPerUnit"
+              id="unitCost"
               type="number"
               step="0.01"
-              value={formData.costPerUnit || 0}
-              onChange={(e) => updateFormField('costPerUnit', parseFloat(e.target.value))}
+              value={formData.unitCost || 0}
+              onChange={(e) => updateFormField('unitCost', parseFloat(e.target.value))}
             />
           </div>
 
@@ -242,12 +232,12 @@ export function MaterialFormFields({
       {formData.category === 'fabric' && (
         <div className="space-y-4 border-t pt-4">
           <h3 className="font-semibold text-sm border-b pb-2">Fabric Specifications</h3>
-          
+
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="fabricType">Fabric Type *</Label>
-              <Select 
-                value={formData.fabricSpec?.fabricType} 
+              <Select
+                value={formData.fabricSpec?.fabricType}
                 onValueChange={(value) => updateFabricSpec('fabricType', value as FabricType)}
               >
                 <SelectTrigger id="fabricType">
@@ -300,8 +290,8 @@ export function MaterialFormFields({
 
             <div className="space-y-2">
               <Label htmlFor="widthUnit">Width Unit</Label>
-              <Select 
-                value={formData.fabricSpec?.widthUnit || 'cm'} 
+              <Select
+                value={formData.fabricSpec?.widthUnit || 'cm'}
                 onValueChange={(value) => updateFabricSpec('widthUnit', value as 'cm' | 'inch')}
               >
                 <SelectTrigger id="widthUnit">
@@ -425,12 +415,12 @@ export function MaterialFormFields({
             {formData.fabricSpec?.isLaminated && (
               <div className="pl-6 space-y-3 border-l-2">
                 <h4 className="text-sm font-medium">Lamination Details</h4>
-                
+
                 <div className="grid grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="laminateType">Laminate Type</Label>
-                    <Select 
-                      value={formData.fabricSpec?.laminationDetails?.laminateType} 
+                    <Select
+                      value={formData.fabricSpec?.laminationDetails?.laminateType}
                       onValueChange={(value) => updateFabricSpec('laminationDetails', {
                         ...formData.fabricSpec?.laminationDetails,
                         laminateType: value as 'PU-foam' | 'open-cell-foam' | 'closed-cell-foam' | 'TPU' | 'other',
@@ -479,8 +469,8 @@ export function MaterialFormFields({
 
                 <div className="space-y-2">
                   <Label htmlFor="bondingMethod">Bonding Method</Label>
-                  <Select 
-                    value={formData.fabricSpec?.laminationDetails?.bondingMethod} 
+                  <Select
+                    value={formData.fabricSpec?.laminationDetails?.bondingMethod}
                     onValueChange={(value) => updateFabricSpec('laminationDetails', {
                       ...formData.fabricSpec?.laminationDetails,
                       bondingMethod: value as 'adhesive' | 'heat-bond' | 'flame-lamination',
@@ -505,12 +495,12 @@ export function MaterialFormFields({
       {formData.category === 'foam' && (
         <div className="space-y-4 border-t pt-4">
           <h3 className="font-semibold text-sm border-b pb-2">Foam Specifications</h3>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="foamType">Foam Type *</Label>
-              <Select 
-                value={formData.foamSpec?.foamType} 
+              <Select
+                value={formData.foamSpec?.foamType}
                 onValueChange={(value) => updateFoamSpec('foamType', value as FoamType)}
               >
                 <SelectTrigger id="foamType">
@@ -599,12 +589,12 @@ export function MaterialFormFields({
       {formData.category === 'fastener' && (
         <div className="space-y-4 border-t pt-4">
           <h3 className="font-semibold text-sm border-b pb-2">Fastener Specifications</h3>
-          
+
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="fastenerType">Fastener Type *</Label>
-              <Select 
-                value={formData.fastenerSpec?.fastenerType} 
+              <Select
+                value={formData.fastenerSpec?.fastenerType}
                 onValueChange={(value) => updateFastenerSpec('fastenerType', value as FastenerType)}
               >
                 <SelectTrigger id="fastenerType">
@@ -679,12 +669,12 @@ export function MaterialFormFields({
       {formData.category === 'thread' && (
         <div className="space-y-4 border-t pt-4">
           <h3 className="font-semibold text-sm border-b pb-2">Thread Specifications</h3>
-          
+
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="threadType">Thread Type *</Label>
-              <Select 
-                value={formData.threadSpec?.threadType} 
+              <Select
+                value={formData.threadSpec?.threadType}
                 onValueChange={(value) => updateThreadSpec('threadType', value as 'polyester' | 'nylon' | 'cotton' | 'bonded-nylon')}
               >
                 <SelectTrigger id="threadType">
@@ -747,12 +737,12 @@ export function MaterialFormFields({
       {formData.category === 'packaging' && (
         <div className="space-y-4 border-t pt-4">
           <h3 className="font-semibold text-sm border-b pb-2">Packaging Specifications</h3>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="packagingType">Packaging Type *</Label>
-              <Select 
-                value={formData.packagingSpec?.packagingType} 
+              <Select
+                value={formData.packagingSpec?.packagingType}
                 onValueChange={(value) => updatePackagingSpec('packagingType', value as 'poly-bag' | 'box' | 'carton' | 'hang-tag' | 'label' | 'insert')}
               >
                 <SelectTrigger id="packagingType">
@@ -810,8 +800,8 @@ export function MaterialFormFields({
                 } as PackagingSpecification['dimensions'])}
                 placeholder="Height"
               />
-              <Select 
-                value={formData.packagingSpec?.dimensions?.unit || 'cm'} 
+              <Select
+                value={formData.packagingSpec?.dimensions?.unit || 'cm'}
                 onValueChange={(value) => updatePackagingSpec('dimensions', {
                   ...formData.packagingSpec?.dimensions,
                   unit: value as 'cm' | 'inch',

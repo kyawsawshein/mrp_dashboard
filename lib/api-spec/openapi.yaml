@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: inventory
+    description: Inventory management operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,104 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /inventory:
+    get:
+      operationId: getInventoryItems
+      tags: [inventory]
+      summary: Get all inventory items
+      description: Returns a list of all inventory items
+      responses:
+        "200":
+          description: List of inventory items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InventoryItem"
+    post:
+      operationId: createInventoryItem
+      tags: [inventory]
+      summary: Create inventory item
+      description: Creates a new inventory item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InventoryItemInput"
+      responses:
+        "201":
+          description: Inventory item created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InventoryItem"
+        "500":
+          description: Server error
+  /inventory/{id}:
+    get:
+      operationId: getInventoryItem
+      tags: [inventory]
+      summary: Get inventory item by ID
+      description: Returns a specific inventory item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Inventory item found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InventoryItem"
+        "404":
+          description: Inventory item not found
+    put:
+      operationId: updateInventoryItem
+      tags: [inventory]
+      summary: Update inventory item
+      description: Updates an existing inventory item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InventoryItemInput"
+      responses:
+        "200":
+          description: Inventory item updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InventoryItem"
+        "404":
+          description: Inventory item not found
+    delete:
+      operationId: deleteInventoryItem
+      tags: [inventory]
+      summary: Delete inventory item
+      description: Deletes an inventory item
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Inventory item deleted
+        "404":
+          description: Inventory item not found
 components:
   schemas:
     HealthStatus:
@@ -33,4 +133,83 @@ components:
           type: string
       required:
         - status
+    InventoryItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        sku:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        specifications:
+          type: object
+        currentStock:
+          type: number
+        minimumStock:
+          type: number
+        maximumStock:
+          type: number
+        unit:
+          type: string
+        unitCost:
+          type: number
+        location:
+          type: string
+        supplier:
+          type: string
+        leadTime:
+          type: integer
+        lastUpdated:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - sku
+        - currentStock
+        - unit
+        - unitCost
+    InventoryItemInput:
+      type: object
+      properties:
+        name:
+          type: string
+        sku:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        specifications:
+          type: object
+        currentStock:
+          type: number
+        minimumStock:
+          type: number
+        maximumStock:
+          type: number
+        unit:
+          type: string
+        unitCost:
+          type: number
+        location:
+          type: string
+        supplier:
+          type: string
+        leadTime:
+          type: integer
+      required:
+        - name
+        - sku
+        - currentStock
+        - unit
+        - unitCost
 
