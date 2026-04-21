@@ -7,7 +7,7 @@ import { setBaseUrl } from '@workspace/api-client-react';
 const queryClient = new QueryClient();
 
 // Set API base URL for development
-setBaseUrl('http://localhost:5173');
+setBaseUrl('http://localhost:3001');
 
 function App() {
   return (
